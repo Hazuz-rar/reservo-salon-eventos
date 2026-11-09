@@ -1,0 +1,19 @@
+{
+  "name": "reservo-salon-eventos",
+  "version": "1.0.0",
+  "description": "Reservaciones para un salón de fiestas, con solicitudes de clientes y administración",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node server/index.js",
+    "admin": "node server/set-admin.js",
+    "test": "node --test tests/*.test.js"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "express": "^4.19.2"
+  }
+}

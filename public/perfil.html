@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Salón Aurora — Mi cuenta</title>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/styles.css"
+  >
+</head>
+
+<body class="app-body">
+
+  <div class="app-shell">
+
+    <aside class="sidebar">
+
+      <div class="sidebar__top">
+        <span class="sidebar__mark">
+          Salón Aurora <small>EVENTOS</small>
+        </span>
+      </div>
+
+      <nav class="sidebar__nav">
+
+        <a
+          class="sidebar__link"
+          href="inicio.html"
+        >
+          Inicio
+        </a>
+
+        <a
+          class="sidebar__link"
+          href="instructivo.html"
+        >
+          Cómo reservar
+        </a>
+
+        <a
+          class="sidebar__link"
+          href="calendario.html"
+        >
+          Disponibilidad
+        </a>
+
+        <a
+          class="sidebar__link"
+          id="loginLink"
+          href="login.html"
+        >
+          Iniciar sesión
+        </a>
+
+        <a
+          class="sidebar__link"
+          id="registerLink"
+          href="registro.html"
+        >
+          Registro
+        </a>
+
+        <div
+            class="sidebar__user"
+            id="userSection"
+            style="display: none;"
+            >
+            <span
+                class="sidebar__username"
+                id="userName"
+            >
+                Usuario
+            </span>
+
+            <a
+                class="sidebar__link is-active"
+                href="perfil.html"
+            >
+                Mis eventos
+            </a>
+
+            <button
+                class="sidebar__logout"
+                type="button"
+                onclick="logout()"
+            >
+                Cerrar sesión
+            </button>
+        </div>
+
+      </nav>
+
+    </aside>
+
+
+    <main class="main">
+
+      <section class="profile">
+
+        <p class="intro__eyebrow">
+          Tu cuenta
+        </p>
+
+        <h1 class="profile__title">
+          Mi cuenta
+        </h1>
+
+        <p class="profile__description">
+          Consulta tus eventos, edita solicitudes pendientes y revisa las confirmaciones.
+        </p>
+
+
+        <div class="profile__grid">
+
+          <div class="profile-card">
+
+            <h2>Información personal</h2>
+
+            <div class="profile-info">
+
+              <div class="profile-info__item">
+                <span>Nombre</span>
+
+                <strong id="profile-name">
+                  Cargando...
+                </strong>
+              </div>
+
+              <div class="profile-info__item">
+                <span>Correo electrónico</span>
+
+                <strong id="profile-email">
+                  Cargando...
+                </strong>
+              </div>
+
+              <div class="profile-info__item">
+                <span>Rol</span>
+
+                <strong id="profile-role">
+                  Cargando...
+                </strong>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="profile-card profile-card--summary">
+
+            <h2>Mis eventos</h2>
+
+            <div
+              class="profile__reservation-count"
+              id="reservation-count"
+            >
+              0
+            </div>
+
+            <p>
+              solicitudes realizadas
+            </p>
+
+            <a
+              class="btn btn--primary"
+              href="calendario.html"
+            >
+              Consultar fechas
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div class="profile-card profile-card--reservations">
+
+          <h2>
+            Solicitudes e historial
+          </h2>
+
+          <div id="profile-reservations">
+
+            <p class="empty-state">
+              Cargando reservaciones...
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+
+  <script src="js/session.js"></script>
+  <script src="js/perfil.js"></script>
+
+</body>
+</html>

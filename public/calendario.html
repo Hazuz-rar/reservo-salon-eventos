@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Disponibilidad y reservas | Salón Aurora</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="app-body">
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar__top"><a href="inicio.html" class="sidebar__mark">Salón Aurora <small>EVENTOS</small></a></div>
+    <nav class="sidebar__nav">
+      <a class="sidebar__link" href="inicio.html">Inicio</a>
+      <a class="sidebar__link" href="instructivo.html">Cómo reservar</a>
+      <a class="sidebar__link is-active" href="calendario.html">Disponibilidad</a>
+      <a class="sidebar__link" id="loginLink" href="login.html">Iniciar sesión</a>
+      <a class="sidebar__link" id="registerLink" href="registro.html">Crear cuenta</a>
+      <div class="sidebar__user" id="userSection" hidden>
+        <span class="sidebar__username" id="userName"></span>
+        <a class="sidebar__link" href="perfil.html">Mis eventos</a>
+        <button class="sidebar__logout" type="button" onclick="logout()">Cerrar sesión</button>
+      </div>
+    </nav>
+    <div class="sidebar__legend">
+      <p class="sidebar__legend-title">Estados de las fechas</p>
+      <div class="legend-item"><span class="dot dot--confirmada"></span> Confirmada</div>
+      <div class="legend-item"><span class="dot dot--pendiente"></span> En revisión</div>
+    </div>
+  </aside>
+  <main class="main">
+    <div class="section-heading"><p class="intro__eyebrow">Planea tu celebración</p><h1>Consulta la disponibilidad</h1><p>Selecciona un día para revisar los horarios con solicitudes. Tu reserva se confirma después de la revisión del salón.</p></div>
+    <header class="main__header">
+      <div class="month-nav">
+        <button class="icon-btn" id="prev-month" type="button" aria-label="Mes anterior">‹</button>
+        <h2 class="month-nav__label" id="month-label">Calendario</h2>
+        <button class="icon-btn" id="next-month" type="button" aria-label="Mes siguiente">›</button>
+        <button class="btn btn--text" id="today-btn" type="button">Hoy</button>
+      </div>
+      <button class="btn btn--primary" id="new-reservation-btn" type="button">+ Solicitar fecha</button>
+    </header>
+    <p class="form-alert" id="calendar-error" hidden></p>
+    <div class="board">
+      <section class="calendar" aria-label="Calendario mensual">
+        <div class="calendar__weekdays"><span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span></div>
+        <div class="calendar__grid" id="calendar-grid"></div>
+        <p class="calendar__footnote">Los horarios pendientes también se consideran ocupados para evitar solicitudes simultáneas.</p>
+      </section>
+      <section class="agenda" aria-label="Horarios ocupados del día">
+        <span class="mini-eyebrow">Horarios del día</span>
+        <h2 class="agenda__title" id="agenda-date">Selecciona una fecha</h2>
+        <p class="agenda__summary" id="agenda-counter"></p>
+        <div class="agenda__list" id="agenda-list"></div>
+        <button type="button" class="btn btn--primary" id="selected-date-btn">Solicitar esta fecha</button>
+      </section>
+    </div>
+    <dialog class="modal" id="reservation-modal" aria-labelledby="reservation-modal-title">
+      <form class="reservation-form" id="reservation-form">
+        <div class="modal__header"><div><p class="intro__eyebrow">Tu evento especial</p><h2 id="reservation-modal-title">Solicitar fecha</h2></div><button class="modal__close" id="close-reservation-modal" type="button" aria-label="Cerrar">×</button></div>
+        <p class="form-hint">Completa tu solicitud. El administrador revisará la fecha y podrá confirmarla.</p>
+        <div class="field"><label for="reservation-title">Nombre del evento</label><input type="text" id="reservation-title" maxlength="120" placeholder="Ej. Cumpleaños de Ana" required></div>
+        <div class="form-row">
+          <div class="field"><label for="reservation-event-type">Tipo de evento</label><select id="reservation-event-type" required><option value="">Seleccionar...</option><option>Cumpleaños</option><option>Boda</option><option>XV años</option><option>Bautizo</option><option>Graduación</option><option>Evento empresarial</option><option>Otro</option></select></div>
+          <div class="field"><label for="reservation-guests">Número de invitados</label><input type="number" id="reservation-guests" min="1" max="100000" placeholder="Ej. 80" required></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label for="reservation-phone">Teléfono de contacto</label><input id="reservation-phone" type="tel" maxlength="24" placeholder="Ej. 81 1234 5678" required></div>
+          <div class="field"><label for="reservation-date">Fecha del evento</label><input type="date" id="reservation-date" required></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label for="reservation-start">Hora de inicio</label><input type="time" id="reservation-start" required></div>
+          <div class="field"><label for="reservation-end">Hora de término</label><input type="time" id="reservation-end" required></div>
+        </div>
+        <button class="btn btn--secondary" id="check-availability-btn" type="button">Consultar este horario</button>
+        <p class="availability-message" id="availability-message" aria-live="polite"></p>
+        <div class="field"><label for="reservation-notes">Detalles especiales (opcional)</label><textarea id="reservation-notes" maxlength="2000" rows="3" placeholder="Cuéntanos qué necesitas para tu celebración"></textarea></div>
+        <p class="reservation-price-note" id="reservation-price" aria-live="polite">Consultando monto...</p>
+        <div class="modal__actions"><button class="btn btn--secondary" id="cancel-reservation" type="button">Volver</button><button class="btn btn--primary" id="reservation-submit-btn" type="submit">Enviar solicitud</button></div>
+      </form>
+    </dialog>
+  </main>
+</div>
+<script src="js/calendario.js"></script><script src="js/session.js"></script>
+</body></html>

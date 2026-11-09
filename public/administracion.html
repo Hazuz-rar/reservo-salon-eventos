@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Administración | Salón Aurora</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+<body class="app-body">
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="sidebar__top">
+                <a href="inicio.html" class="sidebar__mark">Salón Aurora <small>EVENTOS</small></a>
+            </div>
+            <nav class="sidebar__nav">
+                <a class="sidebar__link" href="inicio.html">Inicio</a>
+                <a class="sidebar__link" href="instructivo.html">Cómo reservar</a>
+                <a class="sidebar__link" href="calendario.html">Disponibilidad</a>
+                <a class="sidebar__link" id="loginLink" href="login.html">Iniciar sesión</a>
+                <a class="sidebar__link" id="registerLink" href="registro.html">Crear cuenta</a>
+                <div class="sidebar__user" id="userSection" hidden>
+                    <span class="sidebar__username" id="userName"></span>
+                    <a class="sidebar__link" href="perfil.html">Mis eventos</a>
+                    <button class="sidebar__logout" type="button" onclick="logout()">Cerrar sesión</button>
+                </div>
+            </nav>
+        </aside>
+<main class="main">
+    <div class="section-heading">
+        <p class="intro__eyebrow">Panel privado</p>
+        <h1>Administración de eventos</h1>
+        <p>Revisa solicitudes nuevas, confirma fechas y administra cancelaciones.</p>
+    </div>
+    <div class="admin-filters">
+        <label for="admin-month">Mes <input type="month" id="admin-month"></label>
+        <label for="admin-status">Estado <select id="admin-status">
+            <option value="">Todos</option>
+            <option value="pendiente">En revisión</option>
+            <option value="confirmada">Confirmadas</option>
+            <option value="cancelada">Canceladas</option></select>
+        </label>
+        <button type="button" class="btn btn--secondary" id="admin-refresh">Actualizar</button>
+    </div>
+    <p class="form-alert" id="admin-error" hidden></p>
+    <div class="admin-stats" id="admin-stats"></div>
+    <div id="admin-list" class="admin-list">
+        <p class="empty-state">Cargando solicitudes...</p>
+    </div>
+</main>
+</div>
+    <script src="js/session.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

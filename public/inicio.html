@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Consulta fechas disponibles y solicita una reservación para tu evento.">
+  <title>Inicio | Salón Aurora</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="app-body home-simple">
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar__top"><a class="sidebar__mark" href="inicio.html">Salón Aurora <small>EVENTOS</small></a></div>
+      <nav class="sidebar__nav" aria-label="Navegación principal">
+        <a class="sidebar__link is-active" href="inicio.html" aria-current="page">Inicio</a>
+        <a class="sidebar__link" href="instructivo.html">Cómo reservar</a>
+        <a class="sidebar__link" href="calendario.html">Disponibilidad</a>
+        <a class="sidebar__link" id="loginLink" href="login.html">Iniciar sesión</a>
+        <a class="sidebar__link" id="registerLink" href="registro.html">Crear cuenta</a>
+        <div class="sidebar__user" id="userSection" hidden>
+          <span class="sidebar__username" id="userName"></span>
+          <a class="sidebar__link" href="perfil.html">Mis eventos</a>
+          <button class="sidebar__logout" type="button" onclick="logout()">Cerrar sesión</button>
+        </div>
+      </nav>
+    </aside>
+    <main class="main main--home" id="contenido">
+      <div class="inicio-contenido">
+      <section class="simple-welcome" aria-labelledby="welcome-title">
+        <h1 id="welcome-title">Celebra tus momentos especiales.</h1>
+        <p class="simple-welcome__description">Consulta las fechas disponibles y solicita tu reservación de forma fácil y rápida.</p>
+        <div class="simple-welcome__actions">
+          <a class="btn btn--primary" href="calendario.html">Ver disponibilidad</a>
+          <a class="simple-welcome__secondary" href="instructivo.html">Cómo reservar</a>
+        </div>
+        <p class="simple-welcome__notice">Las reservaciones están sujetas a confirmación.</p>
+        <div class="simple-home-footer">Cumpleaños · Bodas · XV años · Reuniones</div>
+      </section>
+      <div class="inicio-imagen">
+  <img src="img/salon.jpg" alt="Salón Aurora">
+</div>
+</div>
+      
+    </main>
+  </div>
+  <script src="js/session.js"></script>
+</body>
+</html>
