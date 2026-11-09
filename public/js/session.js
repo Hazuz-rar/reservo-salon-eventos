@@ -8,23 +8,7 @@ async function updateSessionMenu() {
     if (!response.ok) throw new Error('Sesión vencida.');
     const { user } = await response.json();
     localStorage.setItem('reservoUser', JSON.stringify(user));
-    const login = document.getElementById('loginLink');
-    const register = document.getElementById('registerLink');
-    const section = document.getElementById('userSection');
-    const name = document.getElementById('userName');
-    if (login) login.hidden = true;
-    if (register) register.hidden = true;
-    if (section) { section.hidden = false; section.style.display = 'flex'; }
-    if (name) name.textContent = `Hola, ${user.name}`;
-    const oldAdmin = document.getElementById('adminNavLink');
-    if (oldAdmin) oldAdmin.remove();
-    if (user.role === 'admin' && section) {
-      const link = document.createElement('a');
-      link.href = 'administracion.html'; link.id = 'adminNavLink'; link.className = 'sidebar__link';
-      link.textContent = 'Administrar eventos';
-      section.insertBefore(link, section.querySelector('.sidebar__logout'));
-      if (location.pathname.endsWith('administracion.html')) link.classList.add('is-active');
-    }
+    showLoggedInMenu(user);
   } catch (error) {
     localStorage.removeItem('reservoToken');
     localStorage.removeItem('reservoUser');
@@ -32,13 +16,38 @@ async function updateSessionMenu() {
   }
 }
 
+function showLoggedInMenu(user) {
+  const login = document.getElementById('loginLink');
+  const register = document.getElementById('registerLink');
+  const section = document.getElementById('userSection');
+  const name = document.getElementById('userName');
+  if (login) login.hidden = true;
+  if (register) register.hidden = true;
+  if (section) section.hidden = false;
+  if (name) name.textContent = `Hola, ${user.name}`;
+
+  const oldAdmin = document.getElementById('adminNavLink');
+  if (oldAdmin) oldAdmin.remove();
+  if (user.role === 'admin' && section) {
+    const link = document.createElement('a');
+    link.href = 'administracion.html';
+    link.id = 'adminNavLink';
+    link.className = 'sidebar__link';
+    link.textContent = 'Administrar eventos';
+    section.insertBefore(link, section.querySelector('.sidebar__logout'));
+    if (location.pathname.endsWith('administracion.html')) link.classList.add('is-active');
+  }
+}
+
 function showLoggedOutMenu() {
   const login = document.getElementById('loginLink');
   const register = document.getElementById('registerLink');
   const section = document.getElementById('userSection');
-  if (login) { login.hidden = false; login.style.display = ''; }
-  if (register) { register.hidden = false; register.style.display = ''; }
-  if (section) { section.hidden = true; section.style.display = 'none'; }
+  const admin = document.getElementById('adminNavLink');
+  if (login) login.hidden = false;
+  if (register) register.hidden = false;
+  if (section) section.hidden = true;
+  if (admin) admin.remove();
 }
 
 async function logout() {

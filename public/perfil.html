@@ -34,12 +34,12 @@
     <aside class="sidebar">
 
       <div class="sidebar__top">
-        <span class="sidebar__mark">
+        <a class="sidebar__mark" href="inicio.html">
           Salón Aurora <small>EVENTOS</small>
-        </span>
+        </a>
       </div>
 
-      <nav class="sidebar__nav">
+      <nav class="sidebar__nav" aria-label="Navegación principal">
 
         <a
           class="sidebar__link"
@@ -62,48 +62,50 @@
           Disponibilidad
         </a>
 
-        <a
-          class="sidebar__link"
-          id="loginLink"
-          href="login.html"
-        >
-          Iniciar sesión
-        </a>
+        <div class="sidebar__session">
 
-        <a
-          class="sidebar__link"
-          id="registerLink"
-          href="registro.html"
-        >
-          Registro
-        </a>
+          <a
+            class="sidebar__link"
+            id="loginLink"
+            href="login.html"
+          >
+            Iniciar sesión
+          </a>
 
-        <div
-            class="sidebar__user"
-            id="userSection"
-            style="display: none;"
-            >
-            <span
-                class="sidebar__username"
-                id="userName"
-            >
-                Usuario
-            </span>
+          <a
+            class="sidebar__link"
+            id="registerLink"
+            href="registro.html"
+          >
+            Crear cuenta
+          </a>
 
-            <a
-                class="sidebar__link is-active"
-                href="perfil.html"
-            >
-                Mis eventos
-            </a>
+          <div
+              class="sidebar__user"
+              id="userSection"
+              hidden
+              >
+              <span
+                  class="sidebar__username"
+                  id="userName"
+              ></span>
 
-            <button
-                class="sidebar__logout"
-                type="button"
-                onclick="logout()"
-            >
-                Cerrar sesión
-            </button>
+              <a
+                  class="sidebar__link is-active"
+                  href="perfil.html"
+              >
+                  Mis eventos
+              </a>
+
+              <button
+                  class="sidebar__logout"
+                  type="button"
+                  onclick="logout()"
+              >
+                  Cerrar sesión
+              </button>
+          </div>
+
         </div>
 
       </nav>

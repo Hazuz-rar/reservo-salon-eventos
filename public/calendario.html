@@ -11,27 +11,37 @@
 <div class="app-shell">
   <aside class="sidebar">
     <div class="sidebar__top"><a href="inicio.html" class="sidebar__mark">Salón Aurora <small>EVENTOS</small></a></div>
-    <nav class="sidebar__nav">
+    <nav class="sidebar__nav" aria-label="Navegación principal">
       <a class="sidebar__link" href="inicio.html">Inicio</a>
       <a class="sidebar__link" href="instructivo.html">Cómo reservar</a>
       <a class="sidebar__link is-active" href="calendario.html">Disponibilidad</a>
-      <a class="sidebar__link" id="loginLink" href="login.html">Iniciar sesión</a>
-      <a class="sidebar__link" id="registerLink" href="registro.html">Crear cuenta</a>
-      <div class="sidebar__user" id="userSection" hidden>
-        <span class="sidebar__username" id="userName"></span>
-        <a class="sidebar__link" href="perfil.html">Mis eventos</a>
-        <button class="sidebar__logout" type="button" onclick="logout()">Cerrar sesión</button>
+      <div class="sidebar__session">
+        <a class="sidebar__link" id="loginLink" href="login.html">Iniciar sesión</a>
+        <a class="sidebar__link" id="registerLink" href="registro.html">Crear cuenta</a>
+        <div class="sidebar__user" id="userSection" hidden>
+          <span class="sidebar__username" id="userName"></span>
+          <a class="sidebar__link" href="perfil.html">Mis eventos</a>
+          <button class="sidebar__logout" type="button" onclick="logout()">Cerrar sesión</button>
+        </div>
       </div>
     </nav>
-    <div class="sidebar__legend">
-      <p class="sidebar__legend-title">Estados de las fechas</p>
-      <div class="legend-item"><span class="dot dot--confirmada"></span> Confirmada</div>
-      <div class="legend-item"><span class="dot dot--pendiente"></span> En revisión</div>
-    </div>
   </aside>
   <main class="main">
     <div class="section-heading"><p class="intro__eyebrow">Planea tu celebración</p><h1>Consulta la disponibilidad</h1><p>Selecciona un día para revisar los horarios con solicitudes. Tu reserva se confirma después de la revisión del salón.</p></div>
     <header class="main__header">
+      <div class="calendar-legend">
+  <span class="calendar-legend__title">Estados de las fechas:</span>
+
+  <div class="legend-item">
+    <span class="dot dot--confirmada"></span>
+    Confirmada
+  </div>
+
+  <div class="legend-item">
+    <span class="dot dot--pendiente"></span>
+    En revisión
+  </div>
+</div>
       <div class="month-nav">
         <button class="icon-btn" id="prev-month" type="button" aria-label="Mes anterior">‹</button>
         <h2 class="month-nav__label" id="month-label">Calendario</h2>
